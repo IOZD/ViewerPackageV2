@@ -24,7 +24,7 @@ const TlogDocsService = (function () {
             ChargeAccountPayment: 'ChargeAccountPayment',
             CashPayment: 'CashPayment',
             ChequePayment: 'ChequePayment',
-            CreditCardPayment: 'CreditCardPayment',
+            GiftCardPayment: 'GiftCardPayment',
             ChargeAccountRefund: 'ChargeAccountRefund',
             CashRefund: 'CashRefund',
             ChequeRefund: 'ChequeRefund',
@@ -153,7 +153,7 @@ const TlogDocsService = (function () {
                                             signature: paymentForSignature && paymentForSignature.customerSignature ? paymentForSignature.customerSignature.data : null
                                         },
                                         docPaymentType: (payment.tenderType ? payment.tenderType : ''),
-                                        isRefund: payment.tenderType.toUpperCase().includes('Refund')
+                                        isRefund: payment.tenderType.toUpperCase().includes('REFUND')
                                     });
                                 }
                             }
@@ -243,7 +243,7 @@ const TlogDocsService = (function () {
                                             title: $translate.getText('delivery_note_number') + doc.number,
                                             ep: `documents/v2/${doc._id}/printdata`,
                                             docPaymentType: doc.payments[0]._type,
-                                            isRefund: doc._type.includes('refund')
+                                            isRefund: doc._type.toUpperCase().includes('REFUND')
                                         });
 
 
@@ -259,7 +259,7 @@ const TlogDocsService = (function () {
                                             title: $translate.getText('refund_note_number') + doc.number,
                                             ep: `documents/v2/${doc._id}/printdata`,
                                             docPaymentType: doc.payments[0]._type,
-                                            isRefund: doc._type.includes('refund')
+                                            isRefund: true
                                         });
                                         break;
                                     }
@@ -356,9 +356,47 @@ const TlogDocsService = (function () {
         return template;
     }
 
+    function getHTMLDocument(document, options) {
+        var template;
+        $templateBuilder = new TemplateBuilderService(_options)
+        var docObj = {};
+        docObj.isRefund = document.docType.toUpperCase().indexOf('REFUND') > -1;
+        docObj.docPaymentType;
+        if (docObj.printData.collections.PAYMENT_LIST[0]) {
+            switch (docObj.printData.collections.PAYMENT_LIST[0].P_TENDER_TYPE) {
+                case 'cash':
+                    docObj.docPaymentType = 'CashPayment'
+                    break;
+                case 'creditCard':
+                    docObj.docPaymentType = 'CreditCardPayment'
+                    break;
+                case 'giftCard':
+                    docObj.docPaymentType = 'GiftCardPayment'
+                    break;
+                case 'cheque':
+                    docObj.docPaymentType = 'ChequePayment'
+                    break;
+                case 'chargeAccount':
+                    docObj.docPaymentType = 'ChargeAccountPayment'
+                    break;
+            }
+        }
+        
+
+
+        var printData = document;
+
+
+        template = $templateBuilder.createHTMLFromPrintDATA(docObj, printData)
+
+
+        return template;
+
+    }
+
     TlogDocsService.prototype.getDocs = (tlog, billData, isClosedOrder) => getDocs(tlog, billData, isClosedOrder);
     TlogDocsService.prototype.getTemplate = (docObj, printData) => getTemplate(docObj, printData);
-    TlogDocsService.prototype.getTemplateWithoutTlog = (docObj, printData) => getTemplate(docObj, printData);
+    TlogDocsService.prototype.getHTMLDocument = (document, options) => getHTMLDocument(document, options);
 
 
     return TlogDocsService;
