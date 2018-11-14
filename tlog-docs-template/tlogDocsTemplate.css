@@ -1,0 +1,173 @@
+
+
+.basicTemplate{
+    background-color:white;
+    font-family: "Courier New", Courier, monospace;
+    padding: 5px 15px 5px 15px;
+}
+
+.basicTemplate  .header-div{
+    padding:10px;
+}
+
+.basicTemplate .ltr{
+    direction:ltr !important;
+}
+
+.basicTemplate .rtl{
+    direction:rtl !important;
+}
+
+.basicTemplate .header-border{
+    border-bottom: solid black 2px;
+    padding:10px;
+}
+
+.basicTemplate .body-div{
+    padding:15px;
+}
+
+.basicTemplate .itemDiv{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    
+}
+
+.basicTemplate .rowPadding{
+    padding:10px 0 10px 0;
+}
+
+.basicTemplate .item-modifier-div{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+
+}
+
+.basicTemplate .il-format{
+    display:flex;
+    flex-direction: row;
+}
+
+.basicTemplate .us-format{
+    display:flex;
+    flex-direction: row;
+}
+
+.basicTemplate .item-qty{
+    display:flex;
+    justify-content: flex-start;
+    flex:1;
+}
+
+.basicTemplate .item-name{
+    display:flex;
+    justify-content: flex-start;
+    flex:5;
+}
+
+.basicTemplate .item-amount{
+    display:flex;
+    justify-content: flex-start;
+    flex:3;
+}
+
+.basicTemplate .total-name{
+    display:flex;
+    justify-content: flex-start;
+    flex:6;
+}
+
+.basicTemplate .total-amount{
+    display:flex;
+    justify-content: flex-start;
+    flex:3;
+}
+
+.basicTemplate .bold{
+    font-weight: bold;
+}
+
+.basicTemplate .negative{
+    direction: ltr !important;
+	text-align: right;
+	width: 100%;
+}
+
+.basicTemplate .signature-container{
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    width:100%;
+    max-height:100px;
+}
+
+.basicTemplate .tpl-body-div{
+    border-bottom: solid #E8E8E8 1px;
+    padding: 10px 0 10px 0;
+
+}
+
+.tpl-body-div:last-child{
+    border-bottom: 0px;
+
+}
+
+.body-div:last-child{
+    border-bottom: 0px;
+
+}
+.basicTemplate .tpl-body-div:last-child{
+    border-bottom: 0px;
+
+}
+
+.basicTemplate .tpl-body-div.body-div:last-child{
+    border-bottom: 0px;
+
+}
+
+.basicTemplate .body-div:last-child{
+    border-bottom: 0px;
+
+}
+.basicTemplate .padding-bottom{
+    padding-bottom: 5px;
+}
+
+.basicTemplate .padding-top{
+    padding-top: 5px;
+}
+
+.basicTemplate .big-chars{
+    font-size:22px;
+}
+
+.basicTemplate .med-chars{
+    font-size:18px;
+}
+
+.basicTemplate .total-amount.negative{
+    direction: ltr !important;
+	text-align: right;
+    width: 100%;
+    display:block;
+}
+
+.basicTemplate .othDiv{
+    font-weight: 600;
+    font-size: 20px;
+    color:black;
+}
+
+.basicTemplate .changeDiv{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    padding-top: 7px;
+}
+
+.basicTemplate .centralize{
+    display:flex;
+    justify-content: center;
+}
